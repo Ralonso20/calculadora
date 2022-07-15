@@ -1,8 +1,12 @@
 import './App.css';
 import calculatorLogo from './images/calculator-logo.png';
 import Visor from './components/Visor.js';
-import { NumerButton, ClearButton } from './components/Button.js';
+import { Button, ClearButton } from './components/Button.js';
+import {useState} from 'react';
+
 function App() {
+  const [input, setInput] = useState('');
+  const addInput = (val) => { setInput(input + val); };
   return (
     <div className="App">
       <header className='header-calc-logo'>
@@ -15,33 +19,35 @@ function App() {
 
       <div className='main-container'>
         <div className='calc-container'>
-          <Visor visorValue='5' />
+          <Visor visorValue={input} />
           <div className='row'>
-            <NumerButton numberValue='1' />
-            <NumerButton numberValue='2' />
-            <NumerButton numberValue='3' />
-            <NumerButton numberValue='+' />
+            <Button clickManage={addInput}>1</Button>
+            <Button clickManage={addInput}>2</Button>
+            <Button clickManage={addInput}>3</Button>
+            <Button clickManage={addInput}>+</Button>
           </div>
           <div className='row'>
-            <NumerButton numberValue='4' />
-            <NumerButton numberValue='5' />
-            <NumerButton numberValue='6' />
-            <NumerButton numberValue='-' />
+            <Button clickManage={addInput}>4</Button>
+            <Button clickManage={addInput}>5</Button>
+            <Button clickManage={addInput}>6</Button>
+            <Button clickManage={addInput}>-</Button>
           </div>
           <div className='row'>
-            <NumerButton numberValue='7' />
-            <NumerButton numberValue='8' />
-            <NumerButton numberValue='9' />
-            <NumerButton numberValue='*' />
+            <Button clickManage={addInput}>7</Button>
+            <Button clickManage={addInput}>8</Button>
+            <Button clickManage={addInput}>9</Button>
+            <Button clickManage={addInput}>*</Button>
           </div>
           <div className='row'>
-            <NumerButton numberValue='=' />
-            <NumerButton numberValue='0' />
-            <NumerButton numberValue=',' />
-            <NumerButton numberValue='/' />
+            <Button clickManage={addInput}>=</Button>
+            <Button clickManage={addInput}>0</Button>
+            <Button clickManage={addInput}>,</Button>
+            <Button clickManage={addInput}>/</Button>
           </div>
 
-          <ClearButton />
+          <ClearButton clearManage={() => { setInput('') }}>
+            Clear
+          </ClearButton>
         </div>
       </div>
     </div>

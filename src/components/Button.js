@@ -1,24 +1,24 @@
 import React from "react";
-import '../stylesheets/NumberButton.css'
+import '../stylesheets/Button.css'
 import '../stylesheets/ClearButton.css'
-export function NumerButton({numberValue}) {
+export function Button(props) {
+    const isOperator = (value) => { 
+        return isNaN(value) && (value !== ',') && (value !== '=')
+    }
+
     return (
-     <div className='button-value'>
-        {numberValue}
+     <div className={`button-container ${isOperator(props.children) ? 'operator-button' : ''}`.trimEnd()}
+     onClick={() => props.clickManage(props.children)}>
+        {props.children}
      </div>   
     );
 }
 
-export function OperationButton() {
+export function ClearButton(props) {
     return (
-     <div></div>   
-    );
-}
-
-export function ClearButton() {
-    return (
-     <div className="button-clear">
-        Clear
+     <div className="button-clear"
+     onClick={props.clearManage}>
+        {props.children}
      </div>   
     );
 }
