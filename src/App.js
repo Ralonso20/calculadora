@@ -2,11 +2,20 @@ import './App.css';
 import calculatorLogo from './images/calculator-logo.png';
 import Visor from './components/Visor.js';
 import { Button, ClearButton } from './components/Button.js';
-import {useState} from 'react';
+import { useState } from 'react';
+import { evaluate } from 'mathjs';
+
 
 function App() {
   const [input, setInput] = useState('');
   const addInput = (val) => { setInput(input + val); };
+  const calcOperation = () => {
+    if (input) {
+      setInput(evaluate(input));
+    }else{
+      alert('Porfavor ingrese valores para realizar los calculos.');
+    }
+  }
   return (
     <div className="App">
       <header className='header-calc-logo'>
@@ -39,9 +48,9 @@ function App() {
             <Button clickManage={addInput}>*</Button>
           </div>
           <div className='row'>
-            <Button clickManage={addInput}>=</Button>
+            <Button clickManage={calcOperation}>=</Button>
             <Button clickManage={addInput}>0</Button>
-            <Button clickManage={addInput}>,</Button>
+            <Button clickManage={addInput}>.</Button>
             <Button clickManage={addInput}>/</Button>
           </div>
 

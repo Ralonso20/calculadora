@@ -3,7 +3,7 @@ import '../stylesheets/Button.css'
 import '../stylesheets/ClearButton.css'
 export function Button(props) {
     const isOperator = (value) => { 
-        return isNaN(value) && (value !== ',') && (value !== '=')
+        return isNaN(value) && (value !== '.') && (value !== '=')
     }
 
     return (
